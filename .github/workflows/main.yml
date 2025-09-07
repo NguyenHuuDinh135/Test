@@ -7,16 +7,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-
-      - uses: dalezak/github-commit-to-trello-card@main
+      - uses: dalezak/github-commit-to-trello-card@v3
         with:
           trello-api-key: ${{ secrets.TRELLO_API_KEY }}
           trello-auth-token: ${{ secrets.TRELLO_AUTH_TOKEN }}
           trello-board-id: ${{ secrets.TRELLO_BOARD }}
           trello-card-action: "Attachment"
-          trello-list-name-commit: "Doing"
+          trello-list-name-commit: "In Process"
           trello-list-name-pr-open: "Testing"
-          trello-list-name-pr-closed: "Done"
+          trello-list-name-pr-closed: "Done 🎉"
 
                   
