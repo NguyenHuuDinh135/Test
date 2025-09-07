@@ -16,5 +16,9 @@ jobs:
           trello-list-name-commit: "In Process"
           trello-list-name-pr-open: "Testing"
           trello-list-name-pr-closed: "Done 🎉"
-
-                  
+          
+      - uses: pmill/github-trello@v1.18
+        with:
+          trello-api-key: ${{ secrets.TRELLO_API_KEY }}
+          trello-auth-token: ${{ secrets.TRELLO_AUTH_TOKEN }}
+          trello-board-id: ${{ secrets.TRELLO_BOARD }}
