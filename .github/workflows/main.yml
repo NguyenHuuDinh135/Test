@@ -4,6 +4,8 @@ on:
         types: [opened, edited, closed, reopened, ready_for_review, converted_to_draft]
     issue_comment:
         types: [created, edited]
+    pull_request_review:
+        types: [submitted, dismissed]
 jobs:
     trello:
         runs-on: ubuntu-latest
@@ -16,3 +18,9 @@ jobs:
               
                   trello-list-id-pr-open: 68bbae1c6450e75827fbbc7a
                   trello-list-id-pr-merged: 68bbae1c6450e75827fbbc7b
+                  trello-list-id-pr-approved: 68bbae1c6450e75827fbbc7d
+                  github-include-pr-commit-messages: true
+                  github-include-pr-branch-name: true
+                  trello-card-position: bottom
+
+                  
