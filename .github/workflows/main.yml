@@ -1,25 +1,22 @@
-name: Trello integration
-on:
-    pull_request:
-        types: [opened, edited, closed, reopened, ready_for_review, converted_to_draft]
-    issue_comment:
-        types: [created, edited]
-    pull_request_review:
-        types: [submitted, dismissed]
+name: GitHub Commit To Trello Comment
+
+on: [push, pull_request]
+
 jobs:
-    trello:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: rematocorp/trello-integration-action@v9.10.1
-              with:
-                  github-token: ${{ secrets.GITHUB_TOKEN }}
-                  trello-api-key: ${{ secrets.TRELLO_API_KEY }}
-                  trello-auth-token: ${{ secrets.TRELLO_AUTH_TOKEN }}
-              
-                  trello-list-id-pr-open: 68bbae1c6450e75827fbbc7d
-                  trello-list-id-pr-merged: 68bbae1c6450e75827fbbc7b
-                  github-include-pr-commit-messages: true
-                  github-include-pr-branch-name: true
-                  trello-card-position: bottom
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: dalezak/github-commit-to-trello-card@main
+        with:
+          trello-api-key: ${{ secrets.TRELLO_API_KEY }}
+          trello-auth-token: ${{ secrets.TRELLO_AUTH_TOKEN }}
+          trello-board-id: ${{ secrets.TRELLO_BOARD }}
+          trello-card-action: "Attachment"
+          trello-list-name-commit: "Doing"
+          trello-list-name-pr-open: "Testing"
+          trello-list-name-pr-closed: "Done"
 
                   
