@@ -1,4 +1,4 @@
-name: Trello integration
+name: Trello Card & GitHub PR Integration
 
 on:
   pull_request:
@@ -8,14 +8,15 @@ on:
 jobs:
   trello:
         runs-on: ubuntu-latest
+        permissions:
+          contents: read
+          pull-requests: write
         steps:
           - uses: rematocorp/trello-integration-action@v9.10.1
             with:
               github-token: ${{ secrets.GITHUB_TOKEN }}
               trello-api-key: ${{ secrets.TRELLO_API_KEY }}
               trello-auth-token: ${{ secrets.TRELLO_AUTH_TOKEN }}
+              
               trello-list-id-pr-open: 68bbae1c6450e75827fbbc7d
               trello-list-id-pr-merged: 68bbae1c6450e75827fbbc7b
-
-              github-include-pr-branch-name: true
-              github-include-pr-commit-messages: true
